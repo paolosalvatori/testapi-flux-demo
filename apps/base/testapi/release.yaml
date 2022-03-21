@@ -1,0 +1,34 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: testapi
+  namespace: flux-testapi
+spec:
+  releaseName: testapi
+  chart:
+    spec:
+      chart: testapi
+      sourceRef:
+        kind: HelmRepository
+        name: paolosalvatori
+        namespace: flux-system
+  interval: 5m
+  install:
+    remediation:
+      retries: 3
+  values:
+    image:
+      repository: paolosalvatori/testapi
+      pullPolicy: IfNotPresent
+      tag: "v1"
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: azure/application-gateway
+        cert-manager.io/cluster-issuer: letsencrypt-application-gateway
+        cert-manager.io/acme-challenge-type: http01
+      hosts:
+      - host: testapi.baborbird.com
+      tls:
+      - hosts:
+        - testapi.baborbird.com
