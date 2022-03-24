@@ -3,5 +3,5 @@ kind: HelmRepository
 metadata:
   name: paolosalvatori
 spec:
-  interval: 30m
+  interval: 10m
   url: https://paolosalvatori.github.io/helm-charts
