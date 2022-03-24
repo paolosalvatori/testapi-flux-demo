@@ -10,7 +10,7 @@ spec:
   values:
     ingress:
       hosts:
-      - host: testapi.baborbird.com
+      - host: testapi.babosbird.com
       tls:
       - hosts:
-        - testapi.baborbird.com
+        - testapi.babosbird.com
